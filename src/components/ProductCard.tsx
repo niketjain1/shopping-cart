@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import Stars from "./Stars";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +37,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           Add to Cart
         </button>
       </div>
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
@@ -61,31 +62,42 @@ const ProductCard = ({ product }: { product: Product }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-xl max-h-xl h-full transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-lg font-medium leading-6 text-gray-900 mb-4"
                   >
                     {product.title}
                   </Dialog.Title>
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    width={200}
-                    height={200}
-                    className="object-cover mt-4 w-full h-56 mb-4 rounded-lg"
-                  />
-                  <div className="mt-2">
-                    <p className="body-base-regular text-gray-500">
-                      {product.description}
+                  <div className="flex flex-col items-center">
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      width={200}
+                      height={200}
+                      className="object-contain h-56 mb-4 rounded-lg"
+                    />
+                    <p className="text-gray-600 text-xl font-semibold mb-2">
+                      ${product.price}
                     </p>
+                    <Stars rating={product.rating.rate} />
+                    <p className="text-sm text-gray-500 mt-1">
+                      {product.rating.rate} ratings
+                    </p>
+                    <div className="mt-4 w-full">
+                      <h4 className="text-md font-semibold mb-2 text-gray-600">
+                        Description:
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        {product.description}
+                      </p>
+                    </div>
+                    <div className="mt-6 w-44 items-center">
+                      <button className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors w-full">
+                        Add to Cart
+                      </button>
+                    </div>
                   </div>
-                  <p className="text-gray-600 m-2 text-center">
-                    ${product.price.toFixed(2)}
-                  </p>
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors w-full">
-                    Add to Cart
-                  </button>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
