@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Product } from "../types";
+import ProductCard from "@/components/ProductCard";
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -27,9 +28,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Product Listing</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
-          <div key={product.id} className="text-gray-900">
-            {product.title}
-          </div>
+          <ProductCard product={product} key={product.id} />
         ))}
       </div>
     </>
