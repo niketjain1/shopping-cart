@@ -1,18 +1,37 @@
-import Header from "@/components/Header";
+"use client";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Product } from "../types";
+
+export default function Home() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get<Product[]>(
+          "https://fakestoreapi.com/products?limit=10"
+        );
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
-    <html lang="en">
-      <body>
-        <div className="flex flex-col min-h-screen bg-gradient-to-r from-blue-200 to-cyan-200 ">
-          <Header />
-          <main className="flex-grow container mx-auto p-4">{children}</main>
-        </div>
-      </body>
-    </html>
+    <>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">Product Listing</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((product) => (
+          <div key={product.id} className="text-gray-900">
+            {product.title}
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
