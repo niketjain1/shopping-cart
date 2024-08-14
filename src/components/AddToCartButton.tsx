@@ -52,7 +52,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
       {!isAdded ? (
         <motion.button
           onClick={handleAddToCart}
-          className={`cart__button relative w-[200px] h-[62px] rounded-[10px] bg-purple-600 text-white text-lg font-medium overflow-hidden transition duration-300 ease-in-out ${
+          className={`relative w-64 h-12 rounded-[10px] bg-purple-600 text-white text-lg font-medium overflow-hidden transition duration-300 ease-in-out ${
             clicked ? "scale-90" : ""
           }`}
           whileHover={{ backgroundColor: "hsl(250, 57%, 53%)" }}
@@ -63,7 +63,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
             animate={clicked ? { left: "110%" } : { left: "-10%" }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
           >
-            <ShoppingCartIcon className="h-8 w-8" />
+            <ShoppingCartIcon className="h-6 w-6" />
           </motion.div>
           <motion.span
             className="absolute left-1/2 z-30 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
@@ -82,7 +82,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
           </motion.span>
         </motion.button>
       ) : (
-        <div className="flex items-center bg-gray-100 rounded w-full justify-between">
+        <div className="flex items-center bg-gray-100 rounded w-64 justify-between">
           <button
             onClick={handleDecreaseQuantity}
             className="px-3 py-1 text-xl font-bold text-blue-500 hover:bg-gray-200 rounded-l"
