@@ -4,6 +4,7 @@ import { useCart } from "@/lib/cartContext";
 import React, { useState } from "react";
 import CartItem from "@/components/CartItem";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const { cart } = useCart();
@@ -35,7 +36,9 @@ const Cart = () => {
       setDiscountType("percentage");
       setDiscountCode("");
     } else {
-      alert('Invalid discount code. Please use format "10$ off" or "10% off".');
+      toast.error("Invalid code!", {
+        position: "bottom-center",
+      });
       setAppliedDiscount(0);
       setDiscountType(null);
     }
