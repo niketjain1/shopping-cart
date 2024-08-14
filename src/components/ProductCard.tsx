@@ -93,7 +93,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                         {product.description}
                       </p>
                     </div>
-                    <div className="mt-6 w-44 items-center">
+                    <div className="mt-2">
                       <AddToCartButton product={product} />
                     </div>
                   </div>
