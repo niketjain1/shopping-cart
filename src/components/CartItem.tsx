@@ -7,6 +7,8 @@ import Image from "next/image";
 const CartItem = ({ item }: { item: CartItemType }) => {
   const { removeFromCart, updateQuantity } = useCart();
 
+  const totalAmount = item.price * item.quantity;
+
   return (
     <div className="flex items-center border-b border-gray-300 py-4 bg-gray-100 p-4 m-3 rounded-md">
       <Image
@@ -20,7 +22,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
         <h3 className="font-semibold text-gray-700 ">{item.title}</h3>
         <p className="text-gray-600">${item.price.toFixed(2)}</p>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center w-40 justify-center">
         <button
           onClick={() =>
             updateQuantity(item.id, Math.max(1, item.quantity - 1))
@@ -36,6 +38,9 @@ const CartItem = ({ item }: { item: CartItemType }) => {
         >
           +
         </button>
+      </div>
+      <div className="w-16 text-right text-gray-700">
+        <p className="font-semibold">${totalAmount.toFixed(2)}</p>
       </div>
       <button
         onClick={() => removeFromCart(item.id)}
