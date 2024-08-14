@@ -5,6 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import Stars from "./Stars";
 import { useCart } from "@/lib/cartContext";
+import AddToCartButton from "./AddToCartButton";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const { addToCart } = useCart();
@@ -35,12 +36,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           </h2>
           <p className="text-gray-600 mb-2">${product.price.toFixed(2)}</p>
         </div>
-        <button
-          className="bg-yellow-300 text-black px-4 py-2 rounded mt-auto hover:bg-yellow-500 transition-colors"
-          onClick={() => addToCart(product)}
-        >
-          Add to Cart
-        </button>
+        <AddToCartButton product={product} />
       </div>
       <Transition show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -98,12 +94,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                       </p>
                     </div>
                     <div className="mt-6 w-44 items-center">
-                      <button
-                        className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors w-full"
-                        onClick={() => addToCart(product)}
-                      >
-                        Add to Cart
-                      </button>
+                      <AddToCartButton product={product} />
                     </div>
                   </div>
                 </Dialog.Panel>
