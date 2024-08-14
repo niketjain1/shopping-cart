@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { CartContextType, CartItem, Product } from "@/types";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -45,9 +45,19 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
+  const getTotalQuantity = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateQuantity }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        getTotalQuantity,
+      }}
     >
       {children}
     </CartContext.Provider>

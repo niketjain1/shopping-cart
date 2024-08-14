@@ -5,7 +5,7 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useCart } from "@/lib/cartContext";
 
 const Header = () => {
-  const { cart } = useCart();
+  const { getTotalQuantity } = useCart();
 
   return (
     <header className="bg-blue-500 text-white p-4">
@@ -15,7 +15,7 @@ const Header = () => {
         </Link>
         <Link href="/cart" className="flex items-center">
           <ShoppingCartIcon className="h-6 w-6 mr-2" />
-          <span>Cart ({cart.length})</span>
+          <span>Cart ({getTotalQuantity()})</span>
         </Link>
       </nav>
     </header>
