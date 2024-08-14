@@ -19,7 +19,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
         className="object-cover mr-4 w-16 h-16 rounded-lg"
       />
       <div className="flex-grow">
-        <h3 className="font-semibold text-gray-700 ">{item.title}</h3>
+        <h3 className="font-semibold text-gray-700">{item.title}</h3>
         <p className="text-gray-600">${item.price.toFixed(2)}</p>
       </div>
       <div className="flex items-center w-40 justify-center">
@@ -28,6 +28,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
             updateQuantity(item.id, Math.max(1, item.quantity - 1))
           }
           className="bg-gray-200 px-2 py-1 rounded text-gray-700"
+          disabled={item.quantity === 1}
         >
           -
         </button>
