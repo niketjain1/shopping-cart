@@ -9,6 +9,9 @@ const Cart = () => {
   const { cart } = useCart();
   const [discountCode, setDiscountCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState(0);
+  const [discountType, setDiscountType] = useState<
+    "fixed" | "percentage" | null
+  >(null);
 
   const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -17,11 +20,24 @@ const Cart = () => {
   const total = subtotal - appliedDiscount;
 
   const applyDiscount = () => {
-    if (discountCode === "SAVE10") {
-      setAppliedDiscount(subtotal * 0.1);
+    const fixedMatch = discountCode.match(/(\d+)\s*\$\s*off/i);
+    const percentageMatch = discountCode.match(/(\d+)\s*%\s*off/i);
+
+    if (fixedMatch) {
+      const amount = parseInt(fixedMatch[1], 10);
+      setAppliedDiscount(amount);
+      setDiscountType("fixed");
+      setDiscountCode("");
+    } else if (percentageMatch) {
+      const percentageAmount = parseInt(percentageMatch[1], 10);
+      const discountAmount = (subtotal * percentageAmount) / 100;
+      setAppliedDiscount(discountAmount);
+      setDiscountType("percentage");
       setDiscountCode("");
     } else {
-      alert("Invalid discount code");
+      alert('Invalid discount code. Please use format "10$ off" or "10% off".');
+      setAppliedDiscount(0);
+      setDiscountType(null);
     }
   };
 
