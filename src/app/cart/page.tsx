@@ -73,7 +73,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="bg-gray-50 rounded-lg min-h-full">
+    <div className="bg-gray-50 border border-purple-200 rounded-lg min-h-full">
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-6 text-gray-800">Your Cart</h1>
         {cart.length === 0 ? (
@@ -81,7 +81,7 @@ const Cart = () => {
         ) : (
           <div className="flex flex-col lg:flex-row lg:space-x-8">
             <div
-              className="lg:w-2/3 bg-gray-200 rounded-lg p-6 mb-8 lg:mb-0 overflow-y-auto"
+              className="lg:w-2/3 bg-gradient-to-br from-white to-violet-100 rounded-lg p-6 mb-8 lg:mb-0 overflow-y-auto shadow-md border border-violet-50"
               style={{ maxHeight: "calc(100vh - 250px)" }}
             >
               {cart.map((item) => (
@@ -90,7 +90,7 @@ const Cart = () => {
             </div>
             <div className="lg:w-1/3">
               <div
-                className="bg-gray-200 rounded-lg p-6 shadow-md lg:sticky lg:top-8"
+                className="bg-gradient-to-br from-white to-violet-100 rounded-lg p-6 shadow-md lg:sticky lg:top-8 border border-violet-50"
                 style={{ maxHeight: "calc(100vh - 250px)" }}
               >
                 <OrderSummary

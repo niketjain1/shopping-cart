@@ -74,10 +74,10 @@ const Checkout: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 bg-gray-50 rounded-md shadow-md">
+    <div className="container mx-auto px-4 py-8 bg-gray-50 border-purple-200 rounded-md shadow-md">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Checkout</h1>
       <div className="flex flex-col-reverse lg:flex-row lg:space-x-8">
-        <div className="lg:w-2/3 bg-gray-200 rounded-lg p-6 lg:mt-0 mt-4 lg:mb-0">
+        <div className="lg:w-2/3 bg-gradient-to-br from-white to-indigo-100 border border-indigo-100 rounded-lg p-6 lg:mt-0 mt-4 lg:mb-0">
           <CheckoutForm
             formData={formData}
             handleInputChange={handleInputChange}
@@ -85,7 +85,7 @@ const Checkout: React.FC = () => {
           />
         </div>
         <div className="lg:w-1/3">
-          <div className="bg-gray-200 rounded-lg p-6 shadow-md sticky top-8">
+          <div className="bg-gradient-to-br from-white to-indigo-100 border border-indigo-100 rounded-lg p-6 shadow-md sticky top-8">
             <h2 className="text-xl font-semibold mb-4 text-gray-700">
               Order Summary
             </h2>
