@@ -10,6 +10,8 @@ interface AddToCartButtonProps {
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
   const { addToCart, updateQuantity, cart, removeFromCart } = useCart();
+
+  // states to managae button clicking
   const [isAdded, setIsAdded] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -17,12 +19,14 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
   const cartItem = cart.find((item) => item.id === product.id);
   const quantity = cartItem ? cartItem.quantity : 0;
 
+  // Using useEffect to change the button if quantity > 0
   useEffect(() => {
     if (quantity > 0) {
       setIsAdded(true);
     }
   }, [quantity]);
 
+  // Function to handle adding products in cart
   const handleAddToCart = () => {
     setClicked(true);
     setIsAnimating(true);
@@ -33,13 +37,15 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
         setClicked(false);
         setIsAdded(false);
       }
-    }, 1500);
+    }, 1500); // using setTimeout to show the animation
   };
 
+  // Function to increase the quantity of a product
   const handleIncreaseQuantity = () => {
     updateQuantity(product.id, quantity + 1);
   };
 
+  // Function to decrease the quantity of a product
   const handleDecreaseQuantity = () => {
     if (quantity > 1) {
       updateQuantity(product.id, quantity - 1);

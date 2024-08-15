@@ -4,6 +4,7 @@ import { useCart } from "@/lib/cartContext";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
+// Component to show the list of products on the cart page
 const CartItem = ({ item }: { item: CartItemType }) => {
   const { removeFromCart, updateQuantity } = useCart();
 

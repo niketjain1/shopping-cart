@@ -9,6 +9,8 @@ import OrderSummary from "@/components/OrderSummary";
 
 const Cart = () => {
   const { cart } = useCart();
+
+  // States to manage discount
   const [discountCode, setDiscountCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState(0);
   const [isApplyDisabled, setIsApplyDisabled] = useState(true);
@@ -16,11 +18,13 @@ const Cart = () => {
     "fixed" | "percentage" | null
   >(null);
 
+  // Calculation of the subtotal price
   const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
+  // Empty string check to disable the button
   useEffect(() => {
     setIsApplyDisabled(discountCode.trim() === "");
   }, [discountCode]);
@@ -28,6 +32,7 @@ const Cart = () => {
   const total = subtotal - appliedDiscount;
 
   const applyDiscount = () => {
+    // Pattern matching for the discounts
     const fixedMatch = discountCode.match(/^(\d+(?:\.\d{1,2})?)\s*\$\s*off$/i);
     const percentageMatch = discountCode.match(
       /^(\d+(?:\.\d{1,2})?)\s*%\s*off$/i

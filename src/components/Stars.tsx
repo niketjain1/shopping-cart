@@ -1,5 +1,6 @@
 import { StarIcon } from "@heroicons/react/20/solid";
 
+// Stars component to show the rating of a product
 const Stars = ({ rating }: { rating: number }) => {
   return (
     <div className="flex items-center">

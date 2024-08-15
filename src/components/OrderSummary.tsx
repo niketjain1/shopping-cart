@@ -11,6 +11,7 @@ interface OrderSummaryProps {
   isApplyDisabled: boolean;
 }
 
+// OrderSummary component to show the summary of products on the cart page
 const OrderSummary: React.FC<OrderSummaryProps> = ({
   subtotal,
   appliedDiscount,

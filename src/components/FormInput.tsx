@@ -9,6 +9,7 @@ interface FormInputProps {
   required?: boolean;
 }
 
+// Generic component for a field input in form data
 const FormInput: React.FC<FormInputProps> = ({
   label,
   name,

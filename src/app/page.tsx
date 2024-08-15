@@ -6,15 +6,17 @@ import { Product } from "../types";
 import ProductCard from "@/components/ProductCard";
 
 export default function Home() {
+  // state to manage product data
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Fetching data for the page
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setIsLoading(true);
         const response = await axios.get<Product[]>(
-          "https://fakestoreapi.com/products?limit=10"
+          "https://fakestoreapi.com/products?limit=10" 
         );
         setProducts(response.data);
       } catch (error) {

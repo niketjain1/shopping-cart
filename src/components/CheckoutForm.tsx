@@ -16,6 +16,7 @@ interface CheckoutFormProps {
   handlePlaceOrder: (e: React.FormEvent) => void;
 }
 
+// Component for filling the form data on the Checkout page
 const CheckoutForm: React.FC<CheckoutFormProps> = ({
   formData,
   handleInputChange,

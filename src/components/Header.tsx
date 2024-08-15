@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useCart } from "@/lib/cartContext";
 
+// Header component for the main page
 const Header = () => {
   const { getTotalQuantity } = useCart();
 

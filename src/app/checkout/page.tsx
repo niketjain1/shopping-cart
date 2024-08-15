@@ -10,6 +10,8 @@ import CheckoutForm from "@/components/CheckoutForm";
 const Checkout: React.FC = () => {
   const router = useRouter();
   const { cart, getTotalQuantity, clearCart } = useCart();
+
+  // States to manage form data
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -27,6 +29,7 @@ const Checkout: React.FC = () => {
 
   const total = subtotal;
 
+  // Function to place the order
   const handlePlaceOrder = (e: React.FormEvent) => {
     e.preventDefault();
     setIsOrderPlaced(true);
@@ -36,6 +39,7 @@ const Checkout: React.FC = () => {
     }, 2000);
   };
 
+  // Function to update the form data state
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -44,6 +48,7 @@ const Checkout: React.FC = () => {
     }));
   };
 
+  // Used this to show the order placed message with the animation
   if (isOrderPlaced) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
@@ -78,6 +83,7 @@ const Checkout: React.FC = () => {
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Checkout</h1>
       <div className="flex flex-col-reverse lg:flex-row lg:space-x-8">
         <div className="lg:w-2/3 bg-gradient-to-br from-white to-indigo-100 border border-indigo-100 rounded-lg p-6 lg:mt-0 mt-4 lg:mb-0">
+          {/* Checkout form component for form data */}
           <CheckoutForm
             formData={formData}
             handleInputChange={handleInputChange}

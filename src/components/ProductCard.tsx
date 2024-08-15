@@ -7,15 +7,17 @@ import Stars from "./Stars";
 import { useCart } from "@/lib/cartContext";
 import AddToCartButton from "./AddToCartButton";
 
+// Component to show product details like image, title etc.
 const ProductCard = ({ product }: { product: Product }) => {
-  const { addToCart } = useCart();
-
+  // State to check if modal is open or not
   const [isOpen, setIsOpen] = useState(false);
 
+  // Function to close the modal
   const closeModal = () => {
     setIsOpen(false);
   };
 
+  // Function to open the modal
   const openModal = () => {
     setIsOpen(true);
   };
