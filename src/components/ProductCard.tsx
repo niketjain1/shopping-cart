@@ -22,19 +22,21 @@ const ProductCard = ({ product }: { product: Product }) => {
 
   return (
     <>
-      <div className="border rounded-lg p-4 flex flex-col bg-white shadow-lg transition-transform duration-300 transform hover:translate-y-[-10px] hover:cursor-pointer">
+      <div className="border rounded-lg lg:p-4 flex flex-col bg-white shadow-lg transition-transform duration-300 transform hover:translate-y-[-10px] hover:cursor-pointer p-4 sm:p-6 md:p-8">
         <div onClick={openModal}>
           <Image
             src={product.image}
             alt={product.title}
             width={200}
             height={200}
-            className="object-cover w-full h-48 mb-4 rounded-lg"
+            className="object-cover w-full lg:h-48 h-44 mb-4 rounded-lg sm:h-56 md:h-64"
           />
-          <h2 className="text-lg font-semibold mb-2 text-gray-500">
+          <h2 className="lg:text-lg font-semibold mb-2 text-gray-500 sm:text-base md:text-lg">
             {product.title}
           </h2>
-          <p className="text-gray-600 mb-2">${product.price.toFixed(2)}</p>
+          <p className="text-gray-600 mb-2 lg:text-base sm:text-lg md:text-xl">
+            ${product.price.toFixed(2)}
+          </p>
         </div>
         <AddToCartButton product={product} />
       </div>
@@ -63,10 +65,10 @@ const ProductCard = ({ product }: { product: Product }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all sm:p-8 md:p-10">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900 mb-4"
+                    className="text-lg font-medium leading-6 text-gray-900 mb-4 sm:text-xl md:text-2xl"
                   >
                     {product.title}
                   </Dialog.Title>
@@ -76,24 +78,24 @@ const ProductCard = ({ product }: { product: Product }) => {
                       alt={product.title}
                       width={200}
                       height={200}
-                      className="object-contain h-56 mb-4 rounded-lg"
+                      className="object-contain h-56 mb-4 rounded-lg sm:h-64 md:h-72 lg:h-80"
                     />
-                    <p className="text-gray-600 text-xl font-semibold mb-2">
+                    <p className="text-gray-600 text-xl font-semibold mb-2 sm:text-2xl md:text-3xl">
                       ${product.price}
                     </p>
                     <Stars rating={product.rating.rate} />
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-sm text-gray-500 mt-1 sm:text-base">
                       {product.rating.rate} ratings
                     </p>
                     <div className="mt-4 w-full">
-                      <h4 className="text-md font-semibold mb-2 text-gray-600">
+                      <h4 className="text-md font-semibold mb-2 text-gray-600 sm:text-lg md:text-xl">
                         Description:
                       </h4>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500 sm:text-base md:text-lg">
                         {product.description}
                       </p>
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-4 w-full sm:mt-6 md:mt-8">
                       <AddToCartButton product={product} />
                     </div>
                   </div>
