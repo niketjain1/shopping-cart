@@ -82,7 +82,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
           </motion.span>
         </motion.button>
       ) : (
-        <div className="flex items-center bg-gray-100 rounded w-64 justify-between">
+        <div className="flex items-center bg-gray-100 rounded w-64 justify-between hover:cursor-default">
           <button
             onClick={handleDecreaseQuantity}
             className="px-3 py-1 text-xl font-bold text-blue-500 hover:bg-gray-200 rounded-l"
