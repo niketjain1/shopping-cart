@@ -65,10 +65,10 @@ const ProductCard = ({ product }: { product: Product }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all sm:p-8 md:p-10">
+                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-4 lg:p-6 text-left align-middle shadow-xl transition-all sm:p-4 md:p-6">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900 mb-4 sm:text-xl md:text-2xl"
+                    className="lg:text-lg font-medium leading-6 text-gray-900 mb-4 sm:text-base md:text-sm"
                   >
                     {product.title}
                   </Dialog.Title>
@@ -78,7 +78,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                       alt={product.title}
                       width={200}
                       height={200}
-                      className="object-contain h-56 mb-4 rounded-lg sm:h-64 md:h-72 lg:h-80"
+                      className="object-contain h-56 mb-4 rounded-lg sm:h-64 md:h-56 lg:h-64"
                     />
                     <p className="text-gray-600 text-xl font-semibold mb-2 sm:text-2xl md:text-3xl">
                       ${product.price}
@@ -88,10 +88,10 @@ const ProductCard = ({ product }: { product: Product }) => {
                       {product.rating.rate} ratings
                     </p>
                     <div className="mt-4 w-full">
-                      <h4 className="text-md font-semibold mb-2 text-gray-600 sm:text-lg md:text-xl">
+                      <h4 className="text-md font-semibold mb-2 text-gray-600 md:text-lg">
                         Description:
                       </h4>
-                      <p className="text-sm text-gray-500 sm:text-base md:text-lg">
+                      <p className="text-sm text-gray-500 sm:text-base md:text-md">
                         {product.description}
                       </p>
                     </div>
