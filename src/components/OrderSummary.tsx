@@ -21,7 +21,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
   isApplyDisabled,
 }) => {
   return (
-    <div className="bg-white md:p-4 p-6 rounded-lg shadow-md">
+    <div className="bg-gray-50 md:p-4 p-6 rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4 text-gray-900">
         Order Summary
       </h2>

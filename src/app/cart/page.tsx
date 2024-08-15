@@ -73,30 +73,40 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Your Cart</h1>
-      {cart.length === 0 ? (
-        <p className="text-gray-600 font-serif">Your cart is empty.</p>
-      ) : (
-        <div className="flex flex-col lg:flex-row lg:space-x-6">
-          <div className="lg:w-4/5">
-            {cart.map((item) => (
-              <CartItem key={item.id} item={item} />
-            ))}
+    <div className="bg-gray-50 rounded-lg min-h-full">
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-6 text-gray-800">Your Cart</h1>
+        {cart.length === 0 ? (
+          <p className="text-gray-600 font-serif">Your cart is empty.</p>
+        ) : (
+          <div className="flex flex-col lg:flex-row lg:space-x-8">
+            <div
+              className="lg:w-2/3 bg-gray-200 rounded-lg p-6 mb-8 lg:mb-0 overflow-y-auto"
+              style={{ maxHeight: "calc(100vh - 250px)" }}
+            >
+              {cart.map((item) => (
+                <CartItem key={item.id} item={item} />
+              ))}
+            </div>
+            <div className="lg:w-1/3">
+              <div
+                className="bg-gray-200 rounded-lg p-6 shadow-md lg:sticky lg:top-8"
+                style={{ maxHeight: "calc(100vh - 250px)" }}
+              >
+                <OrderSummary
+                  subtotal={subtotal}
+                  appliedDiscount={appliedDiscount}
+                  total={total}
+                  discountCode={discountCode}
+                  setDiscountCode={setDiscountCode}
+                  applyDiscount={applyDiscount}
+                  isApplyDisabled={isApplyDisabled}
+                />
+              </div>
+            </div>
           </div>
-          <div className="lg:w-1/3 md:w-full md:p-10 p-4 lg:p-3 md:mt-0">
-            <OrderSummary
-              subtotal={subtotal}
-              appliedDiscount={appliedDiscount}
-              total={total}
-              discountCode={discountCode}
-              setDiscountCode={setDiscountCode}
-              applyDiscount={applyDiscount}
-              isApplyDisabled={isApplyDisabled}
-            />
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

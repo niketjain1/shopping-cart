@@ -10,7 +10,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
   const totalAmount = item.price * item.quantity;
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center border-b border-gray-300 py-4 bg-gray-100 p-4 m-3 rounded-md">
+    <div className="flex flex-col sm:flex-row sm:items-center border-b border-gray-300 py-4 p-4 m-3 rounded-md">
       <div className="flex items-center mb-4 sm:mb-0 sm:mr-4">
         <Image
           src={item.image}
