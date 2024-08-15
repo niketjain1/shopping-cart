@@ -12,6 +12,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
   const { addToCart, updateQuantity, cart, removeFromCart } = useCart();
   const [isAdded, setIsAdded] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const cartItem = cart.find((item) => item.id === product.id);
   const quantity = cartItem ? cartItem.quantity : 0;
@@ -24,11 +25,13 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
 
   const handleAddToCart = () => {
     setClicked(true);
+    setIsAnimating(true);
     setTimeout(() => {
       if (!isAdded) {
         addToCart(product);
         setIsAdded(true);
         setClicked(false);
+        setIsAdded(false);
       }
     }, 1500);
   };
@@ -57,6 +60,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
           }`}
           whileHover={{ backgroundColor: "hsl(250, 57%, 53%)" }}
           whileTap={{ scale: 0.9 }}
+          disabled={isAnimating}
         >
           <motion.div
             className="absolute z-20 top-1/2 left-[-10%] transform -translate-x-1/2 -translate-y-1/2"
