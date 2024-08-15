@@ -61,10 +61,12 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
           Apply Discount
         </button>
       </div>
-      <button className="bg-green-500 text-white px-6 py-2 rounded mt-4 w-full hover:bg-green-600 transition-colors">
-        Proceed to Checkout
-      </button>
-      <Link className="" href="/">
+      <Link href="/checkout">
+        <button className="bg-green-500 text-white px-6 py-2 rounded mt-4 w-full hover:bg-green-600 transition-colors">
+          Proceed to Checkout
+        </button>
+      </Link>
+      <Link href="/">
         <button className="bg-teal-500 text-white px-6 py-2 rounded mt-4 w-full hover:bg-teal-600 transition-colors">
           Back to cart
         </button>
