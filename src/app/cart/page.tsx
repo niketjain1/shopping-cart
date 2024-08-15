@@ -27,17 +27,37 @@ const Cart = () => {
   const total = subtotal - appliedDiscount;
 
   const applyDiscount = () => {
-    const fixedMatch = discountCode.match(/(\d+)\s*\$\s*off /);
-    const percentageMatch = discountCode.match(/(\d+)\s*%\s*off /);
+    const fixedMatch = discountCode.match(/^(\d+(?:\.\d{1,2})?)\s*\$\s*off$/i);
+    const percentageMatch = discountCode.match(
+      /^(\d+(?:\.\d{1,2})?)\s*%\s*off$/i
+    );
 
     if (fixedMatch) {
-      const amount = parseInt(fixedMatch[1], 10);
+      const amount = parseFloat(fixedMatch[1]);
+      if (amount > subtotal) {
+        toast.error(
+          "Invalid Code! Discount amount cannot be greater than the subtotal.",
+          {
+            position: "bottom-center",
+          }
+        );
+        return;
+      }
       setAppliedDiscount(amount);
       setDiscountType("fixed");
       setDiscountCode("");
     } else if (percentageMatch) {
-      const percentageAmount = parseInt(percentageMatch[1], 10);
-      const discountAmount = (subtotal * percentageAmount) / 100;
+      const percentage = parseFloat(percentageMatch[1]);
+      if (percentage > 100) {
+        toast.error(
+          "Invalid Code! Discount percentage cannot be greater than 100%.",
+          {
+            position: "bottom-center",
+          }
+        );
+        return;
+      }
+      const discountAmount = (subtotal * percentage) / 100;
       setAppliedDiscount(discountAmount);
       setDiscountType("percentage");
       setDiscountCode("");
@@ -45,6 +65,7 @@ const Cart = () => {
       toast.error("Invalid code!", {
         position: "bottom-center",
       });
+      setDiscountCode("");
       setAppliedDiscount(0);
       setDiscountType(null);
     }
