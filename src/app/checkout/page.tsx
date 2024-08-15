@@ -75,9 +75,9 @@ const Checkout: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 bg-gray-50 rounded-md shadow-md">
-      <div className="flex flex-col lg:flex-row lg:space-x-8">
-        <div className="lg:w-2/3 bg-gray-200 rounded-lg p-6 mb-8 lg:mb-0">
-          <h1 className="text-3xl font-bold mb-6 text-gray-800">Checkout</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">Checkout</h1>
+      <div className="flex flex-col-reverse lg:flex-row lg:space-x-8">
+        <div className="lg:w-2/3 bg-gray-200 rounded-lg p-6 lg:mt-0 mt-4 lg:mb-0">
           <CheckoutForm
             formData={formData}
             handleInputChange={handleInputChange}
@@ -89,7 +89,7 @@ const Checkout: React.FC = () => {
             <h2 className="text-xl font-semibold mb-4 text-gray-700">
               Order Summary
             </h2>
-            <div className="max-h-96 overflow-y-auto mb-4">
+            <div className="max-h-72 overflow-y-auto mb-4">
               {cart.map((item) => (
                 <div key={item.id} className="flex items-center mb-4 space-x-4">
                   <div className="w-20 h-20 flex-shrink-0">

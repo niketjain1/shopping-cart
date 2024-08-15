@@ -34,7 +34,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
             onClick={() =>
               updateQuantity(item.id, Math.max(1, item.quantity - 1))
             }
-            className="bg-gray-200 px-2 py-1 rounded text-gray-700 hover:bg-gray-300"
+            className="bg-gray-300 px-2 py-1 rounded text-gray-700 hover:bg-gray-400"
             disabled={item.quantity === 1}
           >
             -
@@ -42,7 +42,7 @@ const CartItem = ({ item }: { item: CartItemType }) => {
           <span className="mx-2 text-gray-700">{item.quantity}</span>
           <button
             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-            className="bg-gray-200 px-2 py-1 rounded text-gray-700 hover:bg-gray-300"
+            className="bg-gray-300 px-2 py-1 rounded text-gray-700 hover:bg-gray-400"
           >
             +
           </button>
