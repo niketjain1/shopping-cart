@@ -1,7 +1,7 @@
 "use client";
 
 import { useCart } from "@/lib/cartContext";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartItem from "@/components/CartItem";
 import Link from "next/link";
 import { toast } from "react-toastify";
@@ -10,6 +10,7 @@ const Cart = () => {
   const { cart } = useCart();
   const [discountCode, setDiscountCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState(0);
+  const [isApplyDisabled, setIsApplyDisabled] = useState(true);
   const [discountType, setDiscountType] = useState<
     "fixed" | "percentage" | null
   >(null);
@@ -18,11 +19,16 @@ const Cart = () => {
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  useEffect(() => {
+    setIsApplyDisabled(discountCode.trim() === "");
+  }, [discountCode]);
+
   const total = subtotal - appliedDiscount;
 
   const applyDiscount = () => {
-    const fixedMatch = discountCode.match(/(\d+)\s*\$\s*off/i);
-    const percentageMatch = discountCode.match(/(\d+)\s*%\s*off/i);
+    const fixedMatch = discountCode.match(/(\d+)\s*\$\s*off /);
+    const percentageMatch = discountCode.match(/(\d+)\s*%\s*off /);
 
     if (fixedMatch) {
       const amount = parseInt(fixedMatch[1], 10);
@@ -87,7 +93,12 @@ const Cart = () => {
                 />
                 <button
                   onClick={applyDiscount}
-                  className="bg-blue-500 text-white px-4 py-2 rounded w-full hover:bg-blue-600 transition-colors"
+                  disabled={isApplyDisabled}
+                  className={`w-full px-4 py-2 rounded transition-colors ${
+                    isApplyDisabled
+                      ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      : "bg-blue-500 text-white hover:bg-blue-600"
+                  }`}
                 >
                   Apply Discount
                 </button>
